@@ -2,6 +2,7 @@
 import { Web3Auth } from "@web3auth/modal"
 import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK } from "@web3auth/base"
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider"
+import { useEffect, useState } from "react"
 
 const clientId = process.env.NEXT_PUBLIC_WEB3_AUTH_CLIENT_ID
 
@@ -29,12 +30,13 @@ interface HeaderProps {
   onMenuClick: () => void;
   totalEarnings: number;
 }
-const Header = () => {
+export default function Header({ onMenuClick, totalEarnings }: HeaderProps) {
+  const [first, setfirst] = useState()
+
+  useEffect(()=>{
+    const init = async () =>{}
+  },[])
   return (
-    <div>
-        hellooo
-    </div>
+    <div>Hello This is header</div>
   )
 }
-
-export default Header
