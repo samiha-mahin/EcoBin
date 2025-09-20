@@ -34,9 +34,10 @@ const web3auth = new Web3Auth({
 
 interface HeaderProps {
   onMenuClick: () => void;
+  totalEarnings: number;
 }
 
-export default function Header({ onMenuClick }: HeaderProps) {
+export default function Header({ onMenuClick,totalEarnings }: HeaderProps) {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
