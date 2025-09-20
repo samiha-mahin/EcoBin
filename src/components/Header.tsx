@@ -59,7 +59,7 @@ export default function Header({ onMenuClick,totalEarnings }: HeaderProps) {
 
           if (user.email) {
             localStorage.setItem("userEmail", user.email);
-            await fetch("/api/user_route", {
+            await fetch("/api/user", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ email: user.email, name: user.name || "Anonymous User" }),
@@ -79,10 +79,10 @@ export default function Header({ onMenuClick,totalEarnings }: HeaderProps) {
   useEffect(() => {
     const fetchNotifications = async () => {
       if (!userInfo?.email) return;
-      const userRes = await fetch(`/api/user_route?email=${userInfo.email}`);
+      const userRes = await fetch(`/api/user?email=${userInfo.email}`);
       const user = await userRes.json();
       if (user?.id) {
-        const notifRes = await fetch(`/api/user_route/notifications?userId=${user.id}`);
+        const notifRes = await fetch(`/api/user/notifications?userId=${user.id}`);
         const data = await notifRes.json();
         setNotifications(data || []);
       }
@@ -96,10 +96,10 @@ export default function Header({ onMenuClick,totalEarnings }: HeaderProps) {
   useEffect(() => {
     const fetchBalance = async () => {
       if (!userInfo?.email) return;
-      const userRes = await fetch(`/api/user_route?email=${userInfo.email}`);
+      const userRes = await fetch(`/api/user?email=${userInfo.email}`);
       const user = await userRes.json();
       if (user?.id) {
-        const balanceRes = await fetch(`/api/user_route/balance?userId=${user.id}`);
+        const balanceRes = await fetch(`/api/user/balance?userId=${user.id}`);
         const data = await balanceRes.json();
         setBalance(data?.balance || 0);
       }
@@ -122,7 +122,7 @@ export default function Header({ onMenuClick,totalEarnings }: HeaderProps) {
 
       if (user.email) {
         localStorage.setItem("userEmail", user.email);
-        await fetch("/api/user_route", {
+        await fetch("/api/user", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: user.email, name: user.name || "Anonymous User" }),
@@ -146,7 +146,7 @@ export default function Header({ onMenuClick,totalEarnings }: HeaderProps) {
   };
 
   const handleNotificationClick = async (notificationId: number) => {
-    await fetch(`/api/user_route/notifications/${notificationId}`, { method: "PATCH" });
+    await fetch(`/api/user/notifications/${notificationId}`, { method: "PATCH" });
     setNotifications(prev => prev.filter(n => n.id !== notificationId));
   };
 
