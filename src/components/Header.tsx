@@ -45,7 +45,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
   const [balance, setBalance] = useState(0);
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  // -------------------- Initialize Web3Auth --------------------
+  //  Initialize Web3Auth
   useEffect(() => {
     const initWeb3Auth = async () => {
       try {
@@ -74,7 +74,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
     initWeb3Auth();
   }, []);
 
-  // -------------------- Fetch Notifications --------------------
+  // Fetch Notifications
   useEffect(() => {
     const fetchNotifications = async () => {
       if (!userInfo?.email) return;
@@ -91,7 +91,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
     return () => clearInterval(interval);
   }, [userInfo]);
 
-  // -------------------- Fetch Balance --------------------
+  // Fetch Balance 
   useEffect(() => {
     const fetchBalance = async () => {
       if (!userInfo?.email) return;
@@ -110,7 +110,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
     return () => window.removeEventListener("balanceUpdated", handleBalanceUpdate as EventListener);
   }, [userInfo]);
 
-  // -------------------- Login / Logout --------------------
+  // Login / Logout Functions
   const login = async () => {
     try {
       const web3authProvider = await web3auth.connect();
@@ -151,7 +151,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
 
   if (loading) return <div>Loading Web3Auth...</div>;
 
-  // -------------------- JSX --------------------
+  
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="flex items-center justify-between px-4 py-2">
@@ -165,7 +165,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
             <Leaf className="h-6 w-6 md:h-8 md:w-8 text-green-500 mr-1 md:mr-2" />
             <div className="flex flex-col">
               <span className="font-bold text-base md:text-lg text-gray-800">EcoBin</span>
-              <span className="text-[8px] md:text-[10px] text-gray-500 -mt-1">Saveing The Nature</span>
+              <span className="text-[8px] md:text-[10px] text-gray-500 -mt-1">Saving The Nature</span>
             </div>
           </Link>
         </div>
@@ -224,7 +224,8 @@ export default function Header({ onMenuClick }: HeaderProps) {
 
           {/* User */}
           {!loggedIn ? (
-            <Button onClick={login} className="bg-green-600 hover:bg-green-700 text-white text-sm md:text-base">
+            <Button onClick={login} className="bg-green-600 hover:bg-green-700 text-white
+            text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-4 lg:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 flex items-center rounded-lg md:rounded-xl lg:rounded-2xl transition-all duration-200">
               Login <LogIn className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />
             </Button>
           ) : (
