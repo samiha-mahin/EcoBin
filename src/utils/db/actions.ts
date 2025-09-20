@@ -22,7 +22,7 @@ export async function createUser(email: string, name: string) {
     return null;
   }
 }
-export async function getUsersByEmail(email: string) {
+export async function getUserByEmail(email: string) {
   try {
     const [user] = await db
       .select()
